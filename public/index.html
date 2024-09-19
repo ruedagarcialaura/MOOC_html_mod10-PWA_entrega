@@ -16,6 +16,7 @@
 </head>
 
 <body>
+  <button id="but_install" aria-label="Install" hidden> INSTALAR </button>
   <button id="pause" class="gamebutton" onclick="this.blur();">Pausa</button>
   <button id="reset" class="gamebutton" onclick="this.blur();">NUEVA PARTIDA</button>
 </body>
@@ -33,29 +34,6 @@
   }
 </script>
 
-<button id="installButton" style="display: none;">Instalar</button>
-<script>
-  let deferredPrompt;
-  const installButton = document.getElementById('installButton');
 
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    installButton.style.display = 'block';
-
-    installButton.addEventListener('click', () => {
-      installButton.style.display = 'none';
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the A2HS prompt');
-        } else {
-          console.log('User dismissed the A2HS prompt');
-        }
-        deferredPrompt = null;
-      });
-    });
-  });
-</script>
 
 </html>
